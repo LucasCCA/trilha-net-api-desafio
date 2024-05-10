@@ -21,7 +21,7 @@ namespace TrilhaApiDesafio.Controllers
         [HttpGet("{id}")]
         public IActionResult ObterPorId(int id)
         {
-            var tarefa = _context.Tarefas.Where(x => x.Id.Equals(id));
+            List<Tarefa> tarefa = _context.Tarefas.Where(x => x.Id.Equals(id)).ToList();
 
             if (tarefa == null)
             {
@@ -34,14 +34,14 @@ namespace TrilhaApiDesafio.Controllers
         [HttpGet("ObterTodos")]
         public IActionResult ObterTodos()
         {
-            var tarefas = _context.Tarefas;
+            List<Tarefa> tarefas = _context.Tarefas.ToList();
             return Ok(tarefas);
         }
 
         [HttpGet("ObterPorTitulo")]
         public IActionResult ObterPorTitulo(string titulo)
         {
-            var tarefa = _context.Tarefas.Where(x => x.Titulo.Contains(titulo));
+            List<Tarefa> tarefa = _context.Tarefas.Where(x => x.Titulo.Contains(titulo)).ToList();
 
             if (tarefa == null)
             {
@@ -54,7 +54,7 @@ namespace TrilhaApiDesafio.Controllers
         [HttpGet("ObterPorData")]
         public IActionResult ObterPorData(DateTime data)
         {
-            var tarefa = _context.Tarefas.Where(x => x.Data.Date == data.Date);
+            List<Tarefa> tarefa = _context.Tarefas.Where(x => x.Data.Date == data.Date).ToList();
 
             if (tarefa == null)
             {
@@ -67,7 +67,7 @@ namespace TrilhaApiDesafio.Controllers
         [HttpGet("ObterPorStatus")]
         public IActionResult ObterPorStatus(EnumStatusTarefa status)
         {
-            var tarefa = _context.Tarefas.Where(x => x.Status == status);
+            List<Tarefa> tarefa = _context.Tarefas.Where(x => x.Status == status).ToList();
 
             if (tarefa == null)
             {
