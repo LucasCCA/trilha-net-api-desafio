@@ -81,7 +81,9 @@ namespace TrilhaApiDesafio.Controllers
         public IActionResult Criar([FromBody][Required] CreateTarefaDTO tarefaDto)
         {
             if (tarefaDto.Data == DateTime.MinValue)
+            {
                 return BadRequest(new { Erro = "A data da tarefa não pode ser vazia" });
+            }
 
             Tarefa tarefa = new Tarefa()
             {
@@ -103,10 +105,14 @@ namespace TrilhaApiDesafio.Controllers
             Tarefa tarefa = _context.Tarefas.Find(id);
 
             if (tarefa == null)
+            {
                 return NotFound();
+            }
 
             if (tarefa.Data == DateTime.MinValue)
+            {
                 return BadRequest(new { Erro = "A data da tarefa não pode ser vazia" });
+            }
 
             tarefa.Titulo = tarefaDto.Titulo;
             tarefa.Descricao = tarefaDto.Descricao;
@@ -125,7 +131,9 @@ namespace TrilhaApiDesafio.Controllers
             Tarefa tarefa = _context.Tarefas.Find(id);
 
             if (tarefa == null)
+            {
                 return NotFound();
+            }
 
             _context.Tarefas.Remove(tarefa);
             _context.SaveChanges();
