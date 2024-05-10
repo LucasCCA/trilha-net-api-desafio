@@ -100,7 +100,7 @@ namespace TrilhaApiDesafio.Controllers
         [HttpPut("{id}")]
         public IActionResult Atualizar(int id, [FromBody][Required] CreateTarefaDTO tarefaDto)
         {
-            var tarefa = _context.Tarefas.Find(id);
+            Tarefa tarefa = _context.Tarefas.Find(id);
 
             if (tarefa == null)
                 return NotFound();
@@ -122,7 +122,7 @@ namespace TrilhaApiDesafio.Controllers
         [HttpDelete("{id}")]
         public IActionResult Deletar(int id)
         {
-            var tarefa = _context.Tarefas.Find(id);
+            Tarefa tarefa = _context.Tarefas.Find(id);
 
             if (tarefa == null)
                 return NotFound();
